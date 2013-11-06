@@ -15,17 +15,17 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Themes provider</string>
+    <string name="app_name">Teemojen toimittaja</string>
 
     <!-- Title of an app permission, listed so the user can choose
          whether they want to allow the app to do this. -->
-    <string name="permlab_access_DrmThemeResources">read DRM-protected media resources</string>
+    <string name="permlab_access_DrmThemeResources">lue DRM-suojattuja medialähteitä</string>
 
     <!-- Description of an app permission, allowing access to
          DRM-protected media resources of theme packages. -->
-    <string name="permdesc_access_DrmThemeResources">Allows the app to read DRM-protected media resources of theme packages.</string>
+    <string name="permdesc_access_DrmThemeResources">Sallii sovelluksen lukea teemapaketin DRM-suojattuja medialähteitä.</string>
 
-    <string name="permlab_set_theme">Set global theme</string>
-    <string name="permdesc_set_theme" product="tablet">Allows the app to change the visual theme of your tablet.</string>
-    <string name="permdesc_set_theme" product="default">Allows the app to change the visual theme of your phone.</string>
+    <string name="permlab_set_theme">Aseta yleinen teema</string>
+    <string name="permdesc_set_theme" product="tablet">Sallii sovelluksen vaihtaa tablettisi visuaalisen teeman.</string>
+    <string name="permdesc_set_theme" product="default">Sallii sovelluksen vaihtaa puhelimesi visuaalisen teeman.</string>
 </resources>
