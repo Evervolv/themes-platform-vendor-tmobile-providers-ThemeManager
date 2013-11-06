@@ -126,9 +126,7 @@ public class ThemesProvider extends ContentProvider {
                     ThemeColumns.THUMBNAIL_URI + " TEXT, " +
                     ThemeColumns.PREVIEW_URI + " TEXT, " +
                     ThemeColumns.HAS_HOST_DENSITY + " INTEGER DEFAULT 1, " +
-                    ThemeColumns.HAS_THEME_PACKAGE_SCOPE + " INTEGER DEFAULT 1, " +
-                    ThemeColumns.THEME_HAS_MODDED_BATTERY + " TEXT, " +
-                    ThemeColumns.THEME_HAS_MODDED_SIGNAL + " TEXT" +
+                    ThemeColumns.HAS_THEME_PACKAGE_SCOPE + " INTEGER DEFAULT 1" +
                     ")");
             db.execSQL("CREATE INDEX themeitem_map_package ON themeitem_map (theme_package)");
             db.execSQL("CREATE UNIQUE INDEX themeitem_map_key ON themeitem_map (theme_package, theme_id)");
@@ -159,21 +157,14 @@ public class ThemesProvider extends ContentProvider {
                     ThemeColumns.NOTIFICATION_RINGTONE_NAME + ", " +
                     ThemeColumns.NOTIFICATION_RINGTONE_NAME_KEY + ", " +
                     ThemeColumns.NOTIFICATION_RINGTONE_URI + ", " +
-                    ThemeColumns.PREVIEW_URI + ", " +
-                    
-                    //add this to make the system theme default to 6bar/100 battery
-                    ThemeColumns.THEME_HAS_MODDED_BATTERY + ", " +
-                    ThemeColumns.THEME_HAS_MODDED_SIGNAL +
-                    
-                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    ThemeColumns.PREVIEW_URI +
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     new Object[] { "", "", 1, systemTheme.author, 1, systemTheme.name, systemTheme.styleName,
                     systemTheme.wallpaperName, systemTheme.wallpaperUri,
                     null, null, /* Lock wallpaper */
                     null, null, null, /* Ringtone */
                     null, null, null, /* Notification ringtone */
-                    
-                    						//add this to make the system theme default to 6bar/100 battery
-                    systemTheme.previewUri, "true", "true" } );
+                    systemTheme.previewUri } );
         }
 
         private void dropTables(SQLiteDatabase db) {
@@ -489,10 +480,6 @@ public class ThemesProvider extends ContentProvider {
                 ((pi.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) ? 1 : 0);
         outValues.put(ThemeColumns.HAS_HOST_DENSITY, hasHostDensity(context, pi, ti) ? 1 : 0);
         outValues.put(ThemeColumns.HAS_THEME_PACKAGE_SCOPE, hasThemePackageScope(context, pi, ti) ? 1 : 0);
-        
-        outValues.put(ThemeColumns.THEME_HAS_MODDED_BATTERY, ti.hasModdedBattery);
-        outValues.put(ThemeColumns.THEME_HAS_MODDED_SIGNAL, ti.hasModdedSignal);
-        
         if (ti.wallpaperResourceId != 0) {
             /* XXX: wallpaper name is theme name for now. */
             outValues.put(ThemeColumns.WALLPAPER_NAME, ti.name);
